@@ -143,7 +143,8 @@ function Update-Dll {
 
             # Overwrite original DLL with patched version:
             # Copy-Item -Path $TermsrvDllAsPatch -Destination $TermsrvDllAsFile -Force
-            Move-Item -Path $TermsrvDllAsFile -Destination "$env:SystemRoot\System32\termsrv.wtf.dll" -Force
+            $dateStr = Get-Date -Format "yyyyMMdd"
+            Move-Item -Path $TermsrvDllAsFile -Destination "$env:SystemRoot\System32\termsrv.wtf$dateStr.dll" -Force
             Copy-Item -Path $TermsrvDllAsPatch -Destination $TermsrvDllAsFile -Force
         } elseif ($patch) {
             Write-Host "The file is already patched. No changes are needed.`n" -ForegroundColor Green
